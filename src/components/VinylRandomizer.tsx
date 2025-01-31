@@ -51,7 +51,7 @@ export default function VinylRandomizer() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                Husain's Vinyl Randomizer
+                Husain&#39;s Vinyl Randomizer
             </motion.h1>
 
             {error && <p className="text-red-400 text-lg">{error}</p>}
