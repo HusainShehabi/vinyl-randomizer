@@ -45,9 +45,10 @@ export default function VinylRandomizer() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-brandBeige text-brandGray p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-brandBeige text-brandGray p-4 sm:p-6">
+      {/* MAIN HEADING */}
       <motion.h1
-        className="text-4xl font-bold mb-8 text-center tracking-wide text-brandPlum"
+        className="text-3xl sm:text-4xl font-bold mb-8 text-center tracking-wide text-brandPlum"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -55,8 +56,10 @@ export default function VinylRandomizer() {
         Husain&#39;s Vinyl Randomizer
       </motion.h1>
 
+      {/* ERROR MESSAGE */}
       {error && <p className="text-brandRed text-lg">{error}</p>}
 
+      {/* LOADING STATE */}
       {loading && (
         <motion.div
           className="text-center text-lg font-medium animate-pulse"
@@ -68,10 +71,11 @@ export default function VinylRandomizer() {
         </motion.div>
       )}
 
+      {/* RECORD DISPLAY */}
       {record && !loading && (
-        <div className="relative flex flex-col items-center text-center">
-          {/* Record + Album Container */}
-          <div className="relative w-[400px] h-[400px] flex items-center justify-center">
+        <div className="relative flex flex-col items-center text-center mt-4">
+          {/* Use aspect-square to ensure the card has height on mobile */}
+          <div className="relative w-[90vw] max-w-[400px] aspect-square flex items-center justify-center">
             {playing && (
               <motion.div
                 className="absolute"
@@ -93,7 +97,7 @@ export default function VinylRandomizer() {
               </motion.div>
             )}
 
-            {/* 3D Flip Container */}
+            {/* 3D FLIP CONTAINER */}
             <div
               className="relative w-full h-full [perspective:1000px]"
               onClick={() => setFlipped(!flipped)}
@@ -104,10 +108,8 @@ export default function VinylRandomizer() {
                 animate={{ rotateY: flipped ? 180 : 0 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Front Side - Album Cover */}
-                <div
-                  className="absolute inset-0 w-full h-full rounded-xl overflow-hidden [backface-visibility:hidden]"
-                >
+                {/* FRONT SIDE: Album Cover */}
+                <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden [backface-visibility:hidden]">
                   <img
                     src={record.cover_image}
                     alt={record.title}
@@ -115,22 +117,22 @@ export default function VinylRandomizer() {
                   />
                 </div>
 
-                {/* Back Side - Tracklist */}
+                {/* BACK SIDE: Tracklist */}
                 <div
                   className="absolute inset-0 w-full h-full rounded-xl flex flex-col items-center justify-center
                              p-6 text-center bg-white text-brandGray border border-gray-300
-                             [transform:rotateY(180deg)] [backface-visibility:hidden] "
+                             [transform:rotateY(180deg)] [backface-visibility:hidden]"
                 >
                   <h2 className="text-lg font-medium mb-2 text-brandPlum">
                     Track List
                   </h2>
 
                   <div className="relative w-full max-h-64 overflow-hidden">
-                    <div className="overflow-y-auto
-    max-h-64
-    px-4
-    [::-webkit-scrollbar]:hidden
-    [scrollbar-width:none]">
+                    <div
+                      className="overflow-y-auto max-h-64 px-4 
+                                 [::-webkit-scrollbar]:hidden 
+                                 [scrollbar-width:none]"
+                    >
                       {/* Side A */}
                       <div className="w-full text-left">
                         <h3 className="text-md font-semibold text-brandPlum mb-1">
@@ -183,22 +185,23 @@ export default function VinylRandomizer() {
             </div>
           </div>
 
-          {/* Album Details */}
-          <h2 className="text-2xl font-medium mt-6 text-brandPlum">
+          {/* ALBUM DETAILS */}
+          <h2 className="text-xl sm:text-2xl font-medium mt-5 text-brandPlum">
             {record.title}
           </h2>
-          <p className="text-brandGray text-lg">
+          <p className="text-brandGray text-md sm:text-lg">
             {record.artists?.[0]?.name || "Unknown Artist"}
           </p>
-          <p className="text-sm">
+          <p className="text-sm sm:text-base">
             {record.year || "Unknown Year"}
           </p>
 
-          {/* Play Record Button */}
+          {/* PLAY RECORD BUTTON (hidden on mobile) */}
           <motion.button
             onClick={() => setPlaying(true)}
-  className="mt-6 px-6 py-3 w-64 bg-brandOrange text-white font-medium rounded-lg 
-             shadow-lg transition-transform duration-300 hover:scale-105"
+            className="hidden sm:block mt-6 px-6 py-3 w-64 bg-brandOrange 
+                       text-white font-medium rounded-lg 
+                       shadow-lg transition-transform duration-300 hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -207,12 +210,12 @@ export default function VinylRandomizer() {
         </div>
       )}
 
-      {/* Generate Random Vinyl Button */}
+      {/* GENERATE RANDOM VINYL BUTTON (always visible) */}
       <motion.button
         onClick={fetchRecord}
         className="mt-8 px-6 py-4 w-64 bg-transparent border border-brandOrange text-brandOrange 
-        font-medium rounded-lg shadow-lg transition-transform duration-300 
-        hover:bg-brandOrange hover:text-white hover:scale-105"
+                   font-medium rounded-lg shadow-lg transition-transform duration-300 
+                   hover:bg-brandOrange hover:text-white hover:scale-105"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
