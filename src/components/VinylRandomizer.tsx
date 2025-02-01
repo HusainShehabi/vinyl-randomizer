@@ -185,7 +185,7 @@ export default function VinylRandomizer() {
   */
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-brandBeige text-brandGray">
+    <div className="font-sans flex flex-col min-h-screen w-full bg-brandBeige text-brandGray">
       {/* HEADER */}
       <header className="w-full flex items-center justify-between px-6 py-4 bg-white shadow-md">
         <motion.h1

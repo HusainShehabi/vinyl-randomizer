@@ -23,7 +23,7 @@ export default {
 
       // Already existing font family
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ['var(--font-poppins)', 'sans-serif']
       },
     },
   },
