@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff6ed; /* if you still use "background" in config */
+  --foreground: #4E2249; /* if you still use "foreground" in config */
+
+  --brand-beige:  #FFF6ED;
+  --brand-plum:   #4E2249;
+  --brand-red:    #B51E27;
+  --brand-orange: #FF7C2D;
+  --brand-gray:   #6F6F6F;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,3 +25,5 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+

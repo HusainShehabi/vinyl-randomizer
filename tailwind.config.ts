@@ -8,10 +8,20 @@ export default {
   ],
   theme: {
     extend: {
+      // Already existing colors from your snippet
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
+        // New brand colors
+        brandBeige: "var(--brand-beige)",
+        brandPlum: "var(--brand-plum)",
+        brandRed: "var(--brand-red)",
+        brandOrange: "var(--brand-orange)",
+        brandGray: "var(--brand-gray)",
       },
+
+      // Already existing font family
       fontFamily: {
         sans: ["Inter", "sans-serif"],
       },
