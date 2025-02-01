@@ -3,20 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #fff6ed; /* if you still use "background" in config */
-  --foreground: #4E2249; /* if you still use "foreground" in config */
+  /* Light Mode */
+  --background: #F4F1ED;     /* Soft, warm off-white for background */
+  --foreground: #1A1A1A;     /* Deep neutral gray-black for text */
 
-  --brand-beige:  #FFF6ED;
-  --brand-plum:   #4E2249;
-  --brand-red:    #B51E27;
-  --brand-orange: #FF7C2D;
-  --brand-gray:   #6F6F6F;
+  /* Updated brand colors */
+  --brand-beige:  #F4F1ED;   /* Matches background but can be used for UI elements */
+  --brand-plum:   #4C3A60;   /* A rich, modern plum */
+  --brand-red:    #F15152;   /* Bold red with slight warmth */
+  --brand-orange: #FF9F45;   /* Vibrant, modern orange */
+  --brand-gray:   #7E7E7E;   /* Medium-dark gray for secondary text/icons */
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121212;  /* Very dark charcoal */
+    --foreground: #EFEFEF;  /* Near-white for contrast in dark mode */
   }
 }
 
@@ -25,5 +28,3 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-
