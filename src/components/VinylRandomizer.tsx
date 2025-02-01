@@ -104,8 +104,8 @@ export default function VinylRandomizer() {
   // Positions for 3 stacked covers behind the main record
   const stackedPositions = [
     { x: -50, y: -20, rotate: -10, scale: 0.88 },
-    { x: 0,   y: 50,  rotate: 0,    scale: 0.9 },
-    { x: 50,  y: -25, rotate: 8,    scale: 0.88 },
+    { x: 0, y: 50, rotate: 0, scale: 0.9 },
+    { x: 50, y: -25, rotate: 8, scale: 0.88 },
   ];
 
   // 1) Fetch library if needed
@@ -128,7 +128,7 @@ export default function VinylRandomizer() {
     try {
       // If library is empty on first randomize, show placeholder shuffle
       if (allRecords.length === 0) {
-        setLoadingCovers([null, null, null, null, null]); 
+        setLoadingCovers([null, null, null, null, null]);
         // fetch the library now
         await fetchAllRecords();
       } else {
@@ -167,12 +167,22 @@ export default function VinylRandomizer() {
     setLoadingCovers([]);
   }
 
-  // If user toggles to "View Collection" and we haven't loaded it yet, fetch it
+  // ================ FETCH COLLECTION ON PAGE LOAD =====================
+  useEffect(() => {
+    fetchAllRecords();
+  }, []);
+  // ====================================================================
+
+  // If user toggles to "View Collection," we might not need to fetch again
+  // if we already did on page load, but you could keep this code if you want
+  // to refetch on toggle just in case:
+  /*
   useEffect(() => {
     if (showCollection && allRecords.length === 0) {
       fetchAllRecords();
     }
   }, [showCollection]);
+  */
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-brandBeige text-brandGray">
@@ -248,9 +258,7 @@ export default function VinylRandomizer() {
               {/* Show the main flipping card + stack if we have a record and not loading */}
               {record && !loading && (
                 <div className="flex flex-col items-center text-center">
-                  {/* 
-                    Extra margin at bottom so stacked covers don't overlap text
-                  */}
+                  {/* Extra margin at bottom so stacked covers don't overlap text */}
                   <div className="relative w-[90vw] max-w-[400px] aspect-square flex items-center justify-center mb-12 sm:mb-16">
                     {/* Stacked covers */}
                     <AnimatePresence>
