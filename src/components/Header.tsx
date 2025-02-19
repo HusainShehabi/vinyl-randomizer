@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 interface HeaderProps {
   showCollection: boolean;
   setShowCollection: (show: boolean) => void;
+  refreshRecords: () => void;
 }
 
-export default function Header({ showCollection, setShowCollection }: HeaderProps) {
+export default function Header({ showCollection, setShowCollection, refreshRecords }: HeaderProps) {
   const DEFAULT_USERNAME = "HusainShehabi";
   const [username, setUsername] = useState(DEFAULT_USERNAME);
   const [editing, setEditing] = useState(false);
@@ -37,6 +38,7 @@ export default function Header({ showCollection, setShowCollection }: HeaderProp
     setUsername(tempUsername);
     localStorage.setItem("username", tempUsername);
     setEditing(false);
+    refreshRecords();
   };
 
   // Cancel editing and revert to display mode

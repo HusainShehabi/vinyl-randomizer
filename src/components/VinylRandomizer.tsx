@@ -161,7 +161,7 @@ export default function VinylRandomizer() {
 
   return (
     <div className="font-sans flex flex-col min-h-screen w-full bg-brandBeige text-brandGray">
-<Header showCollection={showCollection} setShowCollection={setShowCollection}/>
+<Header showCollection={showCollection} setShowCollection={setShowCollection} refreshRecords={fetchAllRecords}/>
 
       <main className="flex-1 w-full p-4 sm:p-6 flex flex-col items-center">
         {error && <p className="text-brandRed text-base sm:text-lg mt-4">{error}</p>}
