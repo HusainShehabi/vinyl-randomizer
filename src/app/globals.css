@@ -4,22 +4,22 @@
 
 :root {
   /* Light Mode */
-  --background: #F4F1ED;     /* Soft, warm off-white for background */
-  --foreground: #1A1A1A;     /* Deep neutral gray-black for text */
+  --background: #F4F1ED;     
+  --foreground: #1A1A1A;    
 
   /* Updated brand colors */
-  --brand-beige:  #F4F1ED;   /* Matches background but can be used for UI elements */
-  --brand-plum:   #4C3A60;   /* A rich, modern plum */
-  --brand-red:    #F15152;   /* Bold red with slight warmth */
-  --brand-orange: #FF9F45;   /* Vibrant, modern orange */
-  --brand-gray:   #7E7E7E;   /* Medium-dark gray for secondary text/icons */
+  --brand-beige:  #F4F1ED;   
+  --brand-plum:   #4C3A60;  
+  --brand-red:    #F15152;   
+  --brand-orange: #FF9F45;   
+  --brand-gray:   #7E7E7E;   
 }
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #121212;  /* Very dark charcoal */
-    --foreground: #EFEFEF;  /* Near-white for contrast in dark mode */
+    --background: #121212;  
+    --foreground: #EFEFEF;  
   }
 }
 
