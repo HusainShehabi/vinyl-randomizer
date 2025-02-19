@@ -1,12 +1,9 @@
-import './globals.css' // your global Tailwind or CSS file
+import './globals.css'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
-  // Choose whichever weights you need
   weight: ['400', '600', '700'],
-  // The subsets you need, e.g. Latin
   subsets: ['latin'],
-  // Optional: define a custom variable name to use in CSS
   variable: '--font-poppins'
 })
 
