@@ -15,7 +15,6 @@ export default function Header({ showCollection, setShowCollection, refreshRecor
   const [editing, setEditing] = useState(false);
   const [tempUsername, setTempUsername] = useState("");
 
-  // On mount, load the username from localStorage if available
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedUsername = localStorage.getItem("username");
@@ -25,7 +24,6 @@ export default function Header({ showCollection, setShowCollection, refreshRecor
     }
   }, []);
 
-  // Only enable edit on header click when not already editing
   const handleEditClick = () => {
     if (!editing) {
       setTempUsername(username);
@@ -33,7 +31,6 @@ export default function Header({ showCollection, setShowCollection, refreshRecor
     }
   };
 
-  // Save the username and exit edit mode
   const handleSave = () => {
     setUsername(tempUsername);
     localStorage.setItem("username", tempUsername);
@@ -41,64 +38,63 @@ export default function Header({ showCollection, setShowCollection, refreshRecor
     refreshRecords();
   };
 
-  // Cancel editing and revert to display mode
   const handleCancel = () => {
     setEditing(false);
   };
 
   return (
-    <header className="w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white shadow-md">
-      <motion.h1
-        className="w-full sm:w-auto text-lg sm:text-2xl font-bold text-brandPlum cursor-pointer truncate"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        onClick={handleEditClick}
-      >
-        {editing ? (
-          <span className="flex flex-col sm:flex-row items-center gap-2">
-            <input
-              type="text"
-              value={tempUsername}
-              onChange={(e) => setTempUsername(e.target.value)}
-              className="w-full flex-1 text-lg sm:text-2xl font-bold text-brandPlum p-1 border border-gray-300 rounded focus:outline-none"
-            />
-            <div className="flex gap-2">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent header onClick 
-                  handleSave();
-                }}
-                className="px-2 py-1 border border-green-900 rounded text-green-900 text-sm sm:text-base"
-              >
-                Save
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent header onClick
-                  handleCancel();
-                }}
-                className="px-2 py-1 border border-red-500 text-red-500 rounded text-sm sm:text-base"
-              >
-                Cancel
-              </button>
+    <header className="sticky top-0 z-30 w-full border-b border-white/45 bg-white/65 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <motion.div
+          className="w-full sm:w-auto"
+          initial={{ opacity: 0, y: -18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
+          {editing ? (
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <input
+                type="text"
+                value={tempUsername}
+                onChange={(e) => setTempUsername(e.target.value)}
+                className="h-11 w-full rounded-xl border border-slate-300 bg-white/90 px-3 text-base font-semibold text-brandPlum outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+              />
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleSave}
+                  className="h-11 rounded-xl bg-brandPlum px-4 text-sm font-semibold text-white transition hover:opacity-90"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={handleCancel}
+                  className="h-11 rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-          </span>
-        ) : (
-          <>
-            {username}&#39;s Vinyl {showCollection ? "Collection" : "Randomizer"}
-          </>
-        )}
-      </motion.h1>
+          ) : (
+            <button
+              onClick={handleEditClick}
+              className="text-left text-balance text-xl font-semibold tracking-tight text-brandPlum transition hover:opacity-80 sm:text-2xl"
+            >
+              {username}&#39;s Vinyl {showCollection ? "Collection" : "Randomizer"}
+            </button>
+          )}
+          {!editing && (
+            <p className="mt-1 text-sm text-brandGray">Click title to edit your Discogs username</p>
+          )}
+        </motion.div>
 
-      <motion.button
-        onClick={() => setShowCollection(!showCollection)}
-        className="mt-2 sm:mt-0 px-3 py-2 sm:px-4 sm:py-2 bg-brandPlum text-white text-sm sm:text-base font-medium rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {showCollection ? "🎲 Randomizer" : "📀 View Collection"}
-      </motion.button>
+        <motion.button
+          onClick={() => setShowCollection(!showCollection)}
+          className="h-11 w-full rounded-xl bg-brandPlum px-4 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(26,48,74,0.25)] transition hover:-translate-y-0.5 hover:opacity-95 sm:w-auto"
+          whileTap={{ scale: 0.98 }}
+        >
+          {showCollection ? "Switch to Randomizer" : "Open Collection"}
+        </motion.button>
+      </div>
     </header>
   );
 }

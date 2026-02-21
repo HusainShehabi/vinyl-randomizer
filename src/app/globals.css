@@ -3,28 +3,45 @@
 @tailwind utilities;
 
 :root {
-  /* Light Mode */
-  --background: #F4F1ED;     
-  --foreground: #1A1A1A;    
+  --background: #f4f8fc;
+  --foreground: #10243a;
 
-  /* Updated brand colors */
-  --brand-beige:  #F4F1ED;   
-  --brand-plum:   #4C3A60;  
-  --brand-red:    #F15152;   
-  --brand-orange: #FF9F45;   
-  --brand-gray:   #7E7E7E;   
+  --brand-beige: #f4f8fc;
+  --brand-plum: #1f3651;
+  --brand-red: #e2544f;
+  --brand-orange: #f28a3f;
+  --brand-gray: #5f7487;
+
+  --font-sans: "Avenir Next", "Segoe UI", "SF Pro Text", sans-serif;
+  --font-display: "Avenir Next Demi Bold", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121212;  
-    --foreground: #EFEFEF;  
-  }
+* {
+  border-color: color-mix(in oklab, var(--brand-plum) 18%, white);
 }
 
 body {
+  min-height: 100vh;
+  margin: 0;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 800px at 8% -10%, #d5e6f8 0%, transparent 60%),
+    radial-gradient(900px 600px at 92% 0%, #ffd9bf 0%, transparent 55%),
+    linear-gradient(180deg, #f7fbff 0%, #e8f0f8 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: #ffe2c7;
+  color: #0f2337;
 }
